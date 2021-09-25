@@ -1,7 +1,7 @@
 import pytest
 import time
 
-import mitertools
+import mitertools_rec as mitertools
 import itertools
 
 # Infinite iterators. Iterators for which next() is very slow.
@@ -15,10 +15,15 @@ class BaseTest:
         expected = getattr(itertools, self.f)(*args, **kwargs)
         return result, expected
 
-    def compare(self, a, b, n=None):
-        """Compare the first n elements of iterables a and b."""
-        slice = itertools.islice(zip(a, b), n)
-        assert all([x == y for x, y in slice])
+    def compare(self, result, expected, n=None):
+        """Compare the first n elements of iterables result and expected."""
+        a = itertools.islice(result, n)
+        b = itertools.islice(expected, n)
+        if not n:
+            a = list(a)
+            b = list(b)
+            assert len(a) == len(b), "result and expected have different length"
+        assert all([a == b for a, b in zip(a, b)])
 
 
 class TestCombinations(BaseTest):
@@ -32,9 +37,9 @@ class TestCombinations(BaseTest):
         result, expected = self.call(range(100), 3)
         self.compare(result, expected)
 
-    # def test_bigger(self):
-    #     result, expected = self.call(range(100000000), 2)
-    #     self.compare(result, expected, 100)
+    def test_bigger(self):
+        result, expected = self.call(range(100000000), 2)
+        self.compare(result, expected, 100)
 
 
 class TestPermutations(BaseTest):
@@ -44,13 +49,17 @@ class TestPermutations(BaseTest):
         result, expected = self.call("abc", 2)
         self.compare(result, expected)
 
+    def test_long(self):
+        result, expected = self.call("abcde")
+        self.compare(result, expected)
+
     def test_big(self):
         result, expected = self.call(range(100), 3)
         self.compare(result, expected)
 
-    # def test_bigger(self):
-    #     result, expected = self.call(range(100000000))
-    #     self.compare(result, expected, 100)
+    def test_bigger(self):
+        result, expected = self.call(range(100000000), 3)
+        self.compare(result, expected, 100)
 
 
 class TestProduct(BaseTest):
@@ -74,5 +83,5 @@ class TestProduct(BaseTest):
         result, expected = self.call(range(10000), range(1000))
         self.compare(result, expected)
 
-    # def test_bigger(self):
-    #     assert next(mitertools.product(range(1000000000)))
+    def test_bigger(self):
+        assert next(mitertools.product(range(1000000000)))
