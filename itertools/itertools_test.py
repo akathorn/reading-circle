@@ -32,9 +32,9 @@ class TestCombinations(BaseTest):
         result, expected = self.call(range(100), 3)
         self.compare(result, expected)
 
-    def test_bigger(self):
-        result, expected = self.call(range(100000000), 2)
-        self.compare(result, expected, 100)
+    # def test_bigger(self):
+    #     result, expected = self.call(range(100000000), 2)
+    #     self.compare(result, expected, 100)
 
 
 class TestPermutations(BaseTest):
@@ -48,9 +48,9 @@ class TestPermutations(BaseTest):
         result, expected = self.call(range(100), 3)
         self.compare(result, expected)
 
-    def test_bigger(self):
-        result, expected = self.call(range(100000000))
-        self.compare(result, expected, 100)
+    # def test_bigger(self):
+    #     result, expected = self.call(range(100000000))
+    #     self.compare(result, expected, 100)
 
 
 class TestProduct(BaseTest):
@@ -74,6 +74,5 @@ class TestProduct(BaseTest):
         result, expected = self.call(range(10000), range(1000))
         self.compare(result, expected)
 
-    def test_bigger(self):
-        result, expected = self.call(range(1000000000), range(1000000000))
-        self.compare(result, expected, 100)
+    # def test_bigger(self):
+    #     assert next(mitertools.product(range(1000000000)))

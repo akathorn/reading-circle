@@ -5,6 +5,9 @@ name = "pypi"
 
 [packages]
 pytest-timeout = "*"
+memory-profiler = "*"
+matplotlib = "*"
+pandas = "*"
 
 [dev-packages]
 
