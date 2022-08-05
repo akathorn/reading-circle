@@ -18,51 +18,6 @@ def combinations(iterable, length=2):
             )
 
 
-# def combinations2(iterable, length=2):
-#     class Combinations:
-#         def __init__(self) -> None:
-#             self.elements = []
-#             self.indices = list(range(length))
-#             self.iterator = iter(iterable)
-
-#         def __iter__(self):
-#             return self
-
-#         def __next__(self):
-#             res = tuple(self._get(i) for i in self.indices)
-#             self._increment_indices()
-#             return res
-
-#         def _get(self, index):
-#             while len(self.elements) - 1 < index:
-#                 try:
-#                     self.elements.append(next(self.iterator))
-#                 except StopIteration:
-#                     raise IndexError
-#             return self.elements[index]
-
-#         def _index_within_bounds(self, index):
-#             try:
-#                 self._get(index)
-#                 return True
-#             except:
-#                 return False
-
-#         def _increment_indices(self, i=length - 1):
-#             new_index = self.indices[i] + 1
-#             while new_index in self.indices[:i]:
-#                 new_index += 1
-#             if self._index_within_bounds(new_index):
-#                 self.indices[i] = new_index
-#             elif i == 0:
-#                 n
-#             else:
-#                 self._increment_indices(i - 1)
-#                 self.indices[i] = max(self.indices[:i]) + 1
-
-#     return Combinations()
-
-
 def permutations(iterable, length=2):
     """permutations('ABCD', 2) --> AB AC AD BA BC BD CA CB CD DA DB DC"""
     elements = list(iterable)

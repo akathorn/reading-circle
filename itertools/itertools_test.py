@@ -1,7 +1,4 @@
-import pytest
-import time
-
-import mitertools_rec as mitertools
+import carlos as mitertools
 import itertools
 
 # Infinite iterators. Iterators for which next() is very slow.
@@ -65,6 +62,10 @@ class TestPermutations(BaseTest):
 class TestProduct(BaseTest):
     f = "product"
 
+    def test_one(self):
+        result, expected = self.call("abcde", repeat=3)
+        self.compare(result, expected)
+
     def test_basic(self):
         result, expected = self.call([1, 2], ["a", "b"])
         self.compare(result, expected)
@@ -84,4 +85,4 @@ class TestProduct(BaseTest):
         self.compare(result, expected)
 
     def test_bigger(self):
-        assert next(mitertools.product(range(1000000000)))
+        assert next(mitertools.product(range(100000000), range(1000000), repeat=100))

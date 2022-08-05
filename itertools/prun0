@@ -1,0 +1,9 @@
+         1000003 function calls in 0.520 seconds
+
+   Ordered by: internal time
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+        1    0.423    0.423    0.520    0.520 <string>:1(<module>)
+  1000000    0.097    0.000    0.097    0.000 carlos.py:18(product123123)
+        1    0.000    0.000    0.520    0.520 {built-in method builtins.exec}
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects}

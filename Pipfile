@@ -8,6 +8,7 @@ pytest-timeout = "*"
 memory-profiler = "*"
 matplotlib = "*"
 pandas = "*"
+timeout-decorator = "*"
 
 [dev-packages]
 

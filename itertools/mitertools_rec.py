@@ -1,6 +1,8 @@
 from copy import copy
 import itertools
 
+itertools.combinations
+
 
 def combinations(iterable, length=2):
     """combinations('ABCD', 2) --> AB AC AD BC BD CD"""
@@ -49,11 +51,16 @@ def _permutations_rec(iterator, length, depth, skip=[]):
 
         for ret in _permutations_rec(copy(iterator), length, depth + 1, new_skip):
             yield (head,) + ret
+    # yield tuple()
 
 
 def product(*iterables, repeat=1):
     """product('ABCD', repeat=2) --> AA AB AC AD BA BB BC BD CA CB CC CD DA DB DC DD"""
     yield from _product_rec(*iterables * repeat)
+
+
+# iterables = [range(3), "ab"]
+# iterables * 3 = [range(3), "ab", range(3), "ab", range(3), "ab"]
 
 
 def _product_rec(head, *rest):
@@ -77,7 +84,16 @@ if __name__ == "__main__":
     # print(list(product("ab", repeat=3)))
     # print(list(itertools.product("ab", [1, 2], repeat=2)))
     # print(list(product("ab", [1, 2], repeat=2)))
-    # print(next(product(range(100000000000000))))
+    # print(next(product(range(100000000), range(1000000), repeat=100)))
+
+    # import timeit
+
+    # print(
+    #     timeit.timeit(
+    #         "list(itertools.product([1, 2], 'ab', [True, False], repeat=1))",
+    #         number=10000000,
+    #     )
+    # )
 
     # print(list(itertools.combinations("abcd", 3)))
     # print(list(combinations("abcd", 3)))
@@ -85,4 +101,4 @@ if __name__ == "__main__":
     # print(list(permutations("abcd", 2)))
     # print(list(itertools.permutations("abcd", 3))[:5])
     # print(list(permutations("abcd", 3))[:5])
-    print(next(permutations("abcde")))
+    print(next(permutations("abcd")))
